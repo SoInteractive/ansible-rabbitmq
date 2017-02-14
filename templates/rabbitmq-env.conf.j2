@@ -1,0 +1,16 @@
+# {{ ansible_managed }}
+# All variables with definitions are available here:
+# https://www.rabbitmq.com/relocate.html
+# Variables SHOULDN'T have "RABBITMQ_" prefix
+
+NODE_IP_ADDRESS={{ rabbitmq_address }}
+NODE_PORT={{ rabbitmq_port }}
+
+#NODENAME={{ ansible_hostname }}
+NODENAME=rabbit
+
+HOME={{ rabbitmq_data_dir }}
+MNESIA_BASE={{ rabbitmq_data_dir }}/mnesia
+LOG_BASE=/var/log/rabbitmq
+
+

@@ -1,0 +1,31 @@
+---
+- name: Install dependencies
+  package:
+    name: "{{ item }}"
+    state: installed
+  with_items: "{{ rabbitmq_dependencies }}"
+
+- name: Add rabbitmq repository key
+  apt_key:
+    url: "https://www.rabbitmq.com/rabbitmq-release-signing-key.asc"
+  when: ansible_pkg_mgr == "apt"
+
+- name: Add rabbitmq repository [Ubuntu]
+  apt_repository:
+    repo: "deb http://www.rabbitmq.com/debian/ testing main"
+    state: present
+  when: ansible_pkg_mgr == "apt"
+
+- name: Add rabbitmq repository [Centos]
+  template:
+    src: rabbitmq.repo.j2
+    dest: /etc/yum.repos.d/rabbitmq.repo
+  when: ansible_pkg_mgr == "yum"
+
+- name: Install rabbitmq
+  package:
+    name: rabbitmq-server
+    state: present
+  register: rabbitmq_installed
+
+

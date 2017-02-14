@@ -1,0 +1,10 @@
+[
+  {rabbit, [
+    {tcp_listeners, [
+      { "127.0.0.1", {{ rabbitmq_port }} },
+      { "{{ rabbitmq_address }}", {{ rabbitmq_port }} }
+    ]}{% if groups[rabbitmq_hosts_group] | length > 2 %},
+    {cluster_nodes, {[{% for host in groups[rabbitmq_hosts_group] %}"rabbit@{{ hostvars[host]["ansible_hostname"] }}"{% if not loop.last %},{% endif %}{% endfor %}], disc}}
+{% endif %}
+  ]}
+].

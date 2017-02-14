@@ -1,0 +1,35 @@
+---
+- name: Copy systemd service file
+  template:
+    src: "rabbitmq-server.service.j2"
+    dest: "/etc/systemd/system/rabbitmq-server.service"
+  when: ansible_service_mgr == "systemd" and rabbitmq_data_dir != "/var/lib/rabbitmq" 
+
+- name: Reload systemd configuration
+  command: systemctl daemon-reload
+  when: ansible_service_mgr == "systemd" and rabbitmq_data_dir != "/var/lib/rabbitmq"
+
+- name: Create directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ rabbitmq_system_user }}"
+    group: "{{ rabbitmq_system_group }}"
+  with_items:
+    - "{{ rabbitmq_config_dir }}"
+    - "{{ rabbitmq_data_dir}}"
+    - /var/log/rabbitmq
+
+- name: Configure RabbitMQ
+  template:
+    src: "{{ item }}.j2"
+    dest: "{{ rabbitmq_config_dir }}/{{ item }}"
+    owner: "{{ rabbitmq_system_user }}"
+    group: "{{ rabbitmq_system_group }}"
+    backup: yes
+  with_items:
+    - rabbitmq-env.conf
+    - rabbitmq.config
+  notify: restart rabbitmq
+
+

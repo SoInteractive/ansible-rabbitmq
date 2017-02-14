@@ -1,0 +1,19 @@
+---
+galaxy_info:
+  author: Pawel Krupa
+  description: RabbitMQ cluster
+  company: Sointeractive
+  min_ansible_version: 1.9
+  platforms:
+#   - name: EL
+#     versions:
+#       - all
+   - name: Ubuntu
+     versions:
+       - 14.04
+       - 16.04
+  galaxy_tags:
+   - queue
+   - amqp
+   - rabbitmq
+

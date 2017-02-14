@@ -1,0 +1,20 @@
+---
+- name: Stop rabbitmq
+  service: 
+    name: rabbitmq-server
+    state: stopped
+
+- name: Remove default mnesia data dir
+  command: "rm -rf /var/lib/rabbitmq/mnesia"
+  when: rabbitmq_clear_data_dir 
+
+- name: Populate erlang cookie
+  template:
+    src: erlang_cookie.j2
+    dest: "{{ rabbitmq_data_dir }}/.erlang.cookie"
+    owner: "{{ rabbitmq_system_user }}"
+    group: "{{ rabbitmq_system_group }}"
+    mode: 0400
+    backup: true
+  notify:
+    - restart rabbitmq

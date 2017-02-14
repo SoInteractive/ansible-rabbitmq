@@ -1,0 +1,18 @@
+# {{ ansible_managed }}
+[Unit]
+Description=RabbitMQ broker
+After=network.target epmd@0.0.0.0.socket
+Wants=network.target epmd@0.0.0.0.socket
+
+[Service]
+Type=notify
+User=rabbitmq
+Group=rabbitmq
+NotifyAccess=all
+TimeoutStartSec=3600
+WorkingDirectory={{ rabbitmq_data_dir }}
+ExecStart=/usr/lib/rabbitmq/bin/rabbitmq-server
+ExecStop=/usr/lib/rabbitmq/bin/rabbitmqctl stop
+
+[Install]
+WantedBy=multi-user.target
