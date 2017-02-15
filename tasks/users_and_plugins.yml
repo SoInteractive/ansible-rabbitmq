@@ -17,6 +17,7 @@
     read_priv: "{{ item.read_priv | default('.*') }}"
     write_priv: "{{ item.write_priv | default('.*') }}"
     tags: "{{ (item.tag | default('')) | join(',') }}"
+    vhost: "{{ item.vhost | default('/') }}"
     state: present
     force: yes
   with_items: "{{ rabbitmq_users }}"

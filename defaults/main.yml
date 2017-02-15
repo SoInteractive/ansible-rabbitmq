@@ -16,7 +16,7 @@ rabbitmq_address: "{{ hostvars[inventory_hostname]['ansible_' + rabbitmq_interfa
 rabbitmq_port: 5672
 
 rabbitmq_users:
-  - { user: "admin", password: "password", tag: "administrator", conf_priv: ".*", read_priv: ".*", write_priv: ".*" }
+  - { user: "admin", password: "password", tag: "administrator", conf_priv: ".*", read_priv: ".*", write_priv: ".*", vhost: "/" }
 
 rabbitmq_cluster: true
 #rabbitmq_master: # short hostname
