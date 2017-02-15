@@ -5,7 +5,8 @@ rabbitmq_clear_data_dir: true
 rabbitmq_config_dir: "/etc/rabbitmq"
 rabbitmq_data_dir: "/var/lib/rabbitmq"
 
-rabbitmq_plugins: []
+rabbitmq_plugins:
+  - rabbitmq_management
 
 rabbitmq_system_user: rabbitmq
 rabbitmq_system_group: rabbitmq
@@ -13,6 +14,9 @@ rabbitmq_system_group: rabbitmq
 rabbitmq_interface: "{{ ansible_default_ipv4.interface }}"
 rabbitmq_address: "{{ hostvars[inventory_hostname]['ansible_' + rabbitmq_interface]['ipv4']['address'] }}"
 rabbitmq_port: 5672
+
+rabbitmq_users:
+  - { user: "admin", password: "password", tag: "administrator", conf_priv: ".*", read_priv: ".*", write_priv: ".*" }
 
 rabbitmq_cluster: true
 #rabbitmq_master: # short hostname
