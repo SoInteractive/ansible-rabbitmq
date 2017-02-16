@@ -7,7 +7,7 @@
 
 - name: Add rabbitmq repository key
   apt_key:
-    url: "https://www.rabbitmq.com/rabbitmq-release-signing-key.asc"
+    url: "http://www.rabbitmq.com/rabbitmq-release-signing-key.asc"
   environment:
     http_proxy: "{{ http_proxy | default('') }}"
     https_proxy: "{{ https_proxy | default('') }}"

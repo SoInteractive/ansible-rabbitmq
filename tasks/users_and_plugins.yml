@@ -1,4 +1,8 @@
 ---
+- wait_for:
+    host: "{{ rabbitmq_address }}"
+    port: "{{ rabbitmq_port }}"
+
 - name: Enable the plugins is installed
   rabbitmq_plugin:
     names: "{{ item }}"
@@ -19,9 +23,10 @@
     tags: "{{ (item.tag | default('')) | join(',') }}"
     vhost: "{{ item.vhost | default('/') }}"
     state: present
-    force: yes
+#    force: yes
   with_items: "{{ rabbitmq_users }}"
-
+  retries: 3
+  
 - name: remove guest user
   rabbitmq_user:
     user: guest
