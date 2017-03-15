@@ -3,6 +3,7 @@
     {tcp_listeners, [
       { "127.0.0.1", {{ rabbitmq_port }} },
       { "{{ rabbitmq_address }}", {{ rabbitmq_port }} }
-    ]}
+    ]},
+    {cluster_partition_handling, pause_minority}
   ]}
 ].
