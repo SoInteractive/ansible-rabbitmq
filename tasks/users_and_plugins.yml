@@ -20,7 +20,7 @@
     configure_priv: "{{ item.conf_priv | default('.*') }}"
     read_priv: "{{ item.read_priv | default('.*') }}"
     write_priv: "{{ item.write_priv | default('.*') }}"
-    tags: "{{ (item.tag | default('')) | join(',') }}"
+    tags: "{{ (item.tag | default('')) }}"
     vhost: "{{ item.vhost | default('/') }}"
     state: present
 #    force: yes
