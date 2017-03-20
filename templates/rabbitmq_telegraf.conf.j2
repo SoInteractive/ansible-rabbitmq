@@ -1,5 +1,12 @@
 [[inputs.rabbitmq]]
   url = "http://localhost:15672"
+{% for user in rabbitmq_users %}
+{%   if user.tag == "administrator" %}
+  username = "{{ user.user }}"
+  password = "{{ user.password }}"
+{%   endif %}
+{% endfor %}
+{#
   # name = "rmq-server-1" # optional tag
   # username = "guest"
   # password = "guest"
@@ -21,3 +28,4 @@
   ## A list of nodes to pull metrics about. If not specified, metrics for
   ## all nodes are gathered.
   # nodes = ["rabbit@node1", "rabbit@node2"]
+#}
