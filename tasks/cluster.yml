@@ -14,3 +14,6 @@
 
 - name: start rabbitmq app
   shell: rabbitmqctl start_app
+
+- name: Set replication policy
+  shell: "rabbitmqctl set_policy ha-all \"\" '{\"ha-mode\":\"all\",\"ha-sync-mode\":\"automatic\"}'"
