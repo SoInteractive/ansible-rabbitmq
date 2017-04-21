@@ -10,6 +10,7 @@ rabbitmq_plugins:
 
 rabbitmq_system_user: rabbitmq
 rabbitmq_system_group: rabbitmq
+rabbitmq_file_descriptors: 4096
 
 rabbitmq_interface: "{{ ansible_default_ipv4.interface }}"
 rabbitmq_address: "{{ hostvars[inventory_hostname]['ansible_' + rabbitmq_interface]['ipv4']['address'] }}"
