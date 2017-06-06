@@ -1,6 +1,6 @@
 ---
 galaxy_info:
-  author: Pawel Krupa
+  author: Pawel Krupa, Roman Demachkovych (Rabbitmq exporter)
   description: RabbitMQ cluster
   company: Sointeractive
   min_ansible_version: 1.9
@@ -16,4 +16,3 @@ galaxy_info:
    - queue
    - amqp
    - rabbitmq
-

@@ -23,3 +23,15 @@ rabbitmq_cluster: true
 #rabbitmq_master: # short hostname
 #THIS SHOULD BE CHANGED PER DEPLOYMENT
 rabbitmq_erlang_cookie: GONRMXDJEGTKPQXMAIME
+
+rabbitmq_metrics: true
+
+rabbitmq_exporter_version: 0.20.0
+rabbitmq_exporter_download_url: "https://github.com/kbudde/rabbitmq_exporter/releases/download/v{{ rabbitmq_exporter_version }}/rabbitmq_exporter-{{ rabbitmq_exporter_version }}.linux-amd64.tar.gz"
+
+rabbitmq_exporter_config_flags:
+  'RABBIT_URL': 'http://{{ rabbitmq_interface }}:{{ rabbitmq_port }}'
+  'RABBIT_USER': 'admin'
+  'RABBIT_PASSWORD': 'password'
+  'PUBLISH_PORT': '9095'
+  'OUTPUT_FORMAT': 'JSON'
