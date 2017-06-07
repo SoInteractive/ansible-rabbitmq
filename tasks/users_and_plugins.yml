@@ -1,5 +1,6 @@
 ---
-- wait_for:
+- name: Ensure rabbitmq is active
+  wait_for:
     host: "{{ rabbitmq_address }}"
     port: "{{ rabbitmq_port }}"
 
@@ -26,7 +27,7 @@
 #    force: yes
   with_items: "{{ rabbitmq_users }}"
   retries: 3
-  
+
 - name: remove guest user
   rabbitmq_user:
     user: guest

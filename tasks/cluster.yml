@@ -1,19 +1,24 @@
 ---
 - name: stop rabbitmq app
-  shell: rabbitmqctl stop_app
+  command: rabbitmqctl stop_app
+  tags: skip_ansible_lint
 
 - name: add this node to cluster
-  shell: "rabbitmqctl join_cluster rabbit@{{ rabbitmq_master }}"
+  command: "rabbitmqctl join_cluster rabbit@{{ rabbitmq_master }}"
   register: join_cluster_output
   ignore_errors: True
+  tags: skip_ansible_lint
 
 - name: skip fail if the node is already a member of the cluster
   fail:
     msg: "join_cluster failed but node is not already a member"
   when: ("'already_member' not in join_cluster_output.stderr") and (join_cluster_output.rc != 0)
+  tags: skip_ansible_lint
 
 - name: start rabbitmq app
-  shell: rabbitmqctl start_app
+  command: rabbitmqctl start_app
+  tags: skip_ansible_lint
 
 - name: Set replication policy
-  shell: "rabbitmqctl set_policy ha-all \"\" '{\"ha-mode\":\"all\",\"ha-sync-mode\":\"automatic\",\"ha-promote-on-shutdown\":\"always\"}'"
+  command: "rabbitmqctl set_policy ha-all \"\" '{\"ha-mode\":\"all\",\"ha-sync-mode\":\"automatic\",\"ha-promote-on-shutdown\":\"always\"}'"
+  tags: skip_ansible_lint

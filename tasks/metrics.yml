@@ -1,13 +1,4 @@
 ---
-- name: Install needed packages
-  package:
-    name: "{{ item }}"
-    state: latest
-  with_items:
-    - curl
-    - tar
-    - bzip2
-
 - name: Download Rabbitmq Exporter to local folder
   become: no
   get_url:
@@ -18,7 +9,7 @@
 
 - name: Propagate Rabbitmq Exporter
   copy:
-   src: /tmp/rabbitmq_exporter-{{ rabbitmq_exporter_version }}.tar.gz 
+   src: /tmp/rabbitmq_exporter-{{ rabbitmq_exporter_version }}.tar.gz
    dest: "/tmp/rabbitmq_exporter-{{ rabbitmq_exporter_version }}.tar.gz"
 
 - name: Extract Rabbitmq Exporter into the install directory

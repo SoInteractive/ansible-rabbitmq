@@ -1,0 +1,30 @@
+---
+- hosts: all
+  tasks:
+    - name: install testing suite
+      package:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - iproute
+        - net-tools
+
+- hosts: all
+  pre_tasks:
+    - name: Create systemd service dir
+      file:
+        path: /etc/systemd/system/rabbitmq-server.service.d
+        state: directory
+    # This is needed since sd-notify (Type=notify) doesn't work in docker
+    - name: Change service type to simple
+      copy:
+        dest: /etc/systemd/system/rabbitmq-server.service.d/type.conf
+        content: |
+          [Service]
+          Type=simple
+  roles:
+    - rabbitmq
+  vars:
+    rabbitmq_master: "rabbitmq"
+    rabbitmq_address: "127.0.0.1"
+    rabbitmq_hosts_group: "all"

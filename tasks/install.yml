@@ -30,5 +30,3 @@
     name: rabbitmq-server
     state: present
   register: rabbitmq_installed
-
-

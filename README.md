@@ -1,22 +1,25 @@
-Install and manage RabbitMQ cluster
-===================================
+<p><img src="https://upload.wikimedia.org/wikipedia/en/9/99/RabbitMQLogo.png" alt="rabbitmq logo" title="rabbitmq" align="right" height="60" /></p>
 
-All variables are in `defaults/main.yml`
+Ansible Role: RabbitMQ
+======================
 
-Rabbitmq exporter metrics
-========================
+[![Build Status](https://ci.devops.sosoftware.pl/buildStatus/icon?job=SoInteractive/rabbitmq/master)](https://ci.devops.sosoftware.pl/blue/organizations/jenkins/SoInteractive%2Frabbitmq/activity) [![License](https://img.shields.io/badge/license-MIT%20License-brightgreen.svg)](https://opensource.org/licenses/MIT) [![Ansible Role](https://img.shields.io/ansible/role/99999.svg)](https://galaxy.ansible.com/SoInteractive/rabbitmq/) [![Twitter URL](https://img.shields.io/twitter/follow/sointeractive.svg?style=social&label=Follow%20%40SoInteractive)](https://twitter.com/sointeractive)
 
-If rabbitmq_metrics is true install rabbitmq_exporter using binary release. Handlers for restart/reload events.
+Provision RabbitMQ cluster
 
-Requirements
-============
-All needed packages will be installed with this role. 
+Example usage
+-------------
+
+Use it in a playbook as follows:
+```yaml
+- hosts: all
+  become: true
+  roles:
+    - SoInteractive.rabbitmq
+```
 
 Role Variables
-==============
-```
-rabbitmq_hosts_group: rabbitmq
+--------------
 
-rabbitmq_metrics: true
-rabbitmq_exporter_version: 0.20.0
-```
+Have a look at the [defaults/main.yml](defaults/main.yml) for role variables
+that can be overridden.

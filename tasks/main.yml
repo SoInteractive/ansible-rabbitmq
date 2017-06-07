@@ -10,7 +10,8 @@
   tags:
     - always
 
-- set_fact:
+- name: Get master node address
+  set_fact:
     rabbitmq_master: "{{ hostvars[groups[rabbitmq_hosts_group][0]]['ansible_hostname'] }}"
   when: rabbitmq_master is not defined
 
