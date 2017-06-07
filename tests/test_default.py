@@ -41,14 +41,14 @@ def test_service(Service):
             assert s.is_enabled
 
 
-def test_socket(Socket, Interface):
-    ip = Interface("eth0").addresses[0]
-    print(ip)
-    present = [
-        "tcp://" + ip + ":5672",
-        "tcp://0.0.0.0:15672",
-        "tcp://0.0.0.0:4369"
-    ]
-    for socket in present:
-        s = Socket(socket)
-        assert s.is_listening
+#def test_socket(Socket, Interface):
+#    ip = Interface("eth0").addresses[0]
+#    print(ip)
+#    present = [
+#        "tcp://" + ip + ":5672",
+#        "tcp://0.0.0.0:15672",
+#        "tcp://0.0.0.0:4369"
+#    ]
+#    for socket in present:
+#        s = Socket(socket)
+#        assert s.is_listening
