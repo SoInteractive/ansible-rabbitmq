@@ -5,7 +5,10 @@ After=network.target
 [Service]
 Type=simple
 PIDFile=/var/run/rabbitmq_exporter.pid
-ExecStart=/opt/rabbitmq_exporter/rabbitmq_exporter {% for flag, flag_value in rabbitmq_exporter_config_flags.iteritems() %}-{{ flag }}={{ flag_value }} {% endfor %}
+{% for flag, flag_value in rabbitmq_exporter_config_flags.iteritems() %}
+Environment="{{ flag }}={{ flag_value }}"
+{% endfor %}
+ExecStart=/opt/rabbitmq_exporter/rabbitmq_exporter
 
 SyslogIdentifier=rabbitmq_exporter
 Restart=always
