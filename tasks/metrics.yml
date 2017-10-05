@@ -33,11 +33,10 @@
     group: root
     mode: 0644
   notify:
-    - reload systemd
     - restart rabbitmq_exporter
 
 - name: Ensure Rabbitmq Exporter is started and enabled on boot
-  service:
+  systemd:
     name: rabbitmq_exporter
     state: started
     enabled: yes

@@ -6,10 +6,6 @@
   when: ansible_service_mgr == "systemd" and rabbitmq_data_dir != "/var/lib/rabbitmq"
   notify: restart rabbitmq
 
-- name: Reload systemd configuration
-  command: systemctl daemon-reload
-  when: ansible_service_mgr == "systemd" and rabbitmq_data_dir != "/var/lib/rabbitmq"
-
 - name: Create directories
   file:
     path: "{{ item }}"

@@ -1,13 +1,12 @@
 ---
 - name: restart rabbitmq
-  service:
+  systemd:
+    daemon_reload: yes
     name: rabbitmq-server
     state: restarted
 
-- name: reload systemd
-  command: systemctl daemon-reload
-
 - name: restart rabbitmq_exporter
-  service:
+  systemd:
+    daemon_reload: yes
     name: rabbitmq_exporter
     state: restarted

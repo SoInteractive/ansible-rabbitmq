@@ -1,6 +1,6 @@
 ---
 - name: Stop rabbitmq
-  service:
+  systemd:
     name: rabbitmq-server
     state: stopped
 
