@@ -23,7 +23,7 @@
   when: rabbitmq_installed.changed and rabbitmq_cluster
 
 - name: Ensure RabbitMQ is running
-  service:
+  systemd:
     name: rabbitmq-server
     state: started
     enabled: yes
