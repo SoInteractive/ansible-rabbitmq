@@ -23,7 +23,7 @@
           [Service]
           Type=simple
   roles:
-    - rabbitmq
+    - ansible-rabbitmq
   vars:
     rabbitmq_master: "rabbitmq"
     rabbitmq_address: "127.0.0.1"
