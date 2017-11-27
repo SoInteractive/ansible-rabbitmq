@@ -1,4 +1,11 @@
 ---
+- name: install pip
+  package:
+    name: python-pip
+    update_cache: yes
+    force: yes
+    state: installed
+
 # Exchanges require this library to be installed
 - name: Install requests library
   pip:
