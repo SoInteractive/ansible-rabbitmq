@@ -1,0 +1,27 @@
+---
+- name: Ensure rabbitmq is active
+  wait_for:
+    host: "{{ rabbitmq_address }}"
+    port: "{{ rabbitmq_port }}"
+
+# Create vhosts first for dependant exchanges
+- name: create vhosts
+  rabbitmq_vhost:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ rabbitmq_vhosts }}"
+
+# Exchanges require this library to be installed
+- name: Install requests library
+  pip:
+    name: requests
+
+- name: create exchanges
+  rabbitmq_exchange:
+    name: "{{ item.name }}"
+    type: "{{ item.type }}"
+    vhost: "{{ item.vhost }}"
+    state: present
+    login_user: "{{ item.user }}"
+    login_password: "{{ item.password }}"
+  with_items: "{{ rabbitmq_exchanges }}"

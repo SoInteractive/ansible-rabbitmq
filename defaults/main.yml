@@ -19,6 +19,9 @@ rabbitmq_port: 5672
 rabbitmq_users:
   - { user: "admin", password: "password", tag: "administrator", conf_priv: ".*", read_priv: ".*", write_priv: ".*", vhost: "/" }
 
+rabbitmq_vhosts: []
+rabbitmq_exchanges: []
+
 rabbitmq_cluster: true
 #rabbitmq_master: # short hostname
 #THIS SHOULD BE CHANGED PER DEPLOYMENT
