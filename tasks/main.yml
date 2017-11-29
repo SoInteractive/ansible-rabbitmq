@@ -12,7 +12,7 @@
 
 - name: Get master node address
   set_fact:
-    rabbitmq_master: "{{ hostvars[groups[rabbitmq_hosts_group][0]]['ansible_hostname'] }}"
+    rabbitmq_master: "{{ hostvars[groups[rabbitmq_hosts_group][0]]['ansible_eth0']['ipv4']['address'] }}"
   when: rabbitmq_master is not defined
 
 - include: install.yml
