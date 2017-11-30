@@ -1,0 +1,22 @@
+---
+- name: install pip
+  package:
+    name: python-pip
+    update_cache: yes
+    force: yes
+    state: installed
+
+# Exchanges require this library to be installed
+- name: Install requests library
+  pip:
+    name: requests
+
+- name: create exchanges
+  rabbitmq_exchange:
+    name: "{{ item.name }}"
+    type: "{{ item.type }}"
+    vhost: "{{ item.vhost }}"
+    state: present
+    login_user: "{{ item.user }}"
+    login_password: "{{ item.password }}"
+  with_items: "{{ rabbitmq_exchanges }}"

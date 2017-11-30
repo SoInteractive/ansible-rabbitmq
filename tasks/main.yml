@@ -28,7 +28,12 @@
     state: started
     enabled: yes
 
+# Create these before users, so that users can belong to new vhosts
+- include: vhosts.yml
+
 - include: users_and_plugins.yml
+
+- include: exchanges.yml
 
 - include: cluster.yml
   when: ansible_hostname != rabbitmq_master and rabbitmq_cluster
