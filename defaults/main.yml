@@ -33,8 +33,8 @@ rabbitmq_exporter_version: 0.20.0
 rabbitmq_exporter_download_url: "https://github.com/kbudde/rabbitmq_exporter/releases/download/v{{ rabbitmq_exporter_version }}/rabbitmq_exporter-{{ rabbitmq_exporter_version }}.linux-amd64.tar.gz"
 
 rabbitmq_exporter_config_flags:
-  'RABBIT_URL': 'http://{{ rabbitmq_address }}:{{ rabbitmq_port }}'
+  'RABBIT_URL': 'http://{{ rabbitmq_address }}:15672'
   'RABBIT_USER': 'admin'
   'RABBIT_PASSWORD': 'password'
   'PUBLISH_PORT': '9095'
-  'OUTPUT_FORMAT': 'JSON'
+  'OUTPUT_FORMAT': 'TTY'
