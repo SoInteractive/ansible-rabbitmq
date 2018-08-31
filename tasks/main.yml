@@ -11,12 +11,11 @@
     - always
 
 - name: Add entry to /etc/hosts if ubuntu 18.04
-  lineinfile:
+ lineinfile:
       dest: /etc/hosts
-      line: "127.0.0.1 {{ hostvars[item].ansible_host }}"
+      line: "127.0.0.1 {{ ansible_host }}"
       state: present
-  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '18.04'
-  with_items: "{{ groups.queue }}"
+  when: "ansible_distribution == 'Ubuntu' and ansible_distribution_version == '18.04' and 'queue' in group_names"
 
 - name: Get master node address
   set_fact:
