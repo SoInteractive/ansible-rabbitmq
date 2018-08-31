@@ -10,6 +10,14 @@
   tags:
     - always
 
+- name: Add entry to /etc/hosts if ubuntu 18.04
+  lineinfile:
+      dest: /etc/hosts
+      line: "127.0.0.1 {{ hostvars[item].ansible_host }}"
+      state: present
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '18.04'
+  with_items: "{{ groups.queue }}"
+
 - name: Get master node address
   set_fact:
     rabbitmq_master: "{{ hostvars[groups[rabbitmq_hosts_group][0]]['ansible_hostname'] }}"
