@@ -4,7 +4,7 @@
     name: python-pip
     update_cache: yes
     force: yes
-    state: installed
+    state: present
 
 # Exchanges require this library to be installed
 - name: Install requests library

@@ -25,6 +25,13 @@
     dest: /etc/yum.repos.d/rabbitmq.repo
   when: ansible_pkg_mgr == "yum"
 
+- name: Ensure hostname is present in /etc/hosts 
+  lineinfile:
+    path: /etc/hosts
+    regexp: "^127.0.1.1"
+    line: "127.0.1.1   {{ inventory_hostname }}"
+    state: present
+
 - name: Install rabbitmq
   package:
     name: rabbitmq-server
